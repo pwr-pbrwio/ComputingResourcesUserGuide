@@ -1,4 +1,10 @@
- User Guide
+User Guide
+# About server
+* Operating system: Debian 9
+* RAM 128 GB
+* Intel Core i9-9960X 
+* GPU NVIDIA GeForce RTX 2080 Ti
+
 # Account Creation
 To use the Discovery server you must have an active account. To do this, you have to send an e-mail to lech.madeyski@pwr.edu.pl and provide the following information:
 1. Justification for what reason the computing power is needed
@@ -7,7 +13,7 @@ To use the Discovery server you must have an active account. To do this, you hav
 4. Project duration
 5. Nature and size of data
 
-If your request is approved, you will be able to enjoy high-performance computing unit. Finally as an e-mail response you will be provided with credentials to your private account. From this moment you are fully responsible for your account and the data you store there.
+If your request is approved, you will be able to enjoy high-performance computing unit. Finally as an e-mail response you will be provided with credentials to your pr account. From this moment you are fully responsible for your account and the data you store there.
 
 # Getting Started
 ## Interfaces
@@ -18,7 +24,7 @@ Using the Discovery server is possible using two interfaces:
 ### Website (recommended)
 * *JupyterLab* (http://156.17.128.168/jupyterhub) - is a web-based interactive development environment for Jupyter notebooks, code, and data. All development work can be done via the browser. You can work from multiple devices without installing any external software. Before starting the project, a setup via a terminal is required.
 
-### Termian
+### Termial
 * *SSH* (username@156.17.128.168:22) - network protocol for operating network services. You can connect to any account via SSH protocol and perform commands from the command line. You can also connect PyCharm Professional software via SSH by setting up a remote environment that allows you to prepare and maintain the code locally in the IDE but run it remotely.
 
 ## Project setup
@@ -45,10 +51,11 @@ Before you do this, you must reload the system variables to enable Miniconda.
 ```bash
 source ~/.bashrc
 ```
-When you reload a context you'll see that you are currently using the default (base) python environment, eg. (base) jkowalsk@discovery:~$.
+When you reload a context you'll see that you are currently using the default (base) python environment, eg. `(base) jkowalsk@discovery:~`
 
 ### Create Conda environment
-When creating a new environment, you can specify the project name and Python version. Instead of "myenv" please enter your project name. Only the necessary dependencies will be installed. All additional libraries, e.g. numpy, tendorflow must be manually installed in next steps.
+When creating a new environment, you can specify the project name and Python version. Instead of `myenv` please enter your project name. Only the necessary dependencies will be installed. All additional libraries, e.g. numpy, tendorflow must be manually installed in next steps.
+
 ```bash
 conda create -n myenv python=3.7
 ```
@@ -59,13 +66,13 @@ conda info --envs
 ```
 
 ### Activate environemnt
-To perform operations eg. run a script in the environment via termianl, you must activate the proper environemnt. Instead of "myenv" please enter your project name.
+To perform operations eg. run a script in the environment via termianl, you must activate the proper environemnt. Instead of `myenv` please enter your project name.
 ```bash
 conda activate myenv
 ```
 
 ## Checkout your Git repository on your remote machine
-To work on your own project, create a git repository on GitHub (if you haven't already done) and clone it via console to your home directory. Instead of "myenv", "jkowalsk" and "myproject" please enter your data. Before you start, make sure you have active session for your conda environment.
+To work on your own project, create a git repository on GitHub (if you haven't already done) and clone it via console to your home directory. Instead of `myenv`, `jkowalsk` and `myproject` please enter your data. Before you start, make sure you have active session for your conda environment.
 ```bash
 cd ~
 conda activate myenv
@@ -73,7 +80,7 @@ git clone https://github.com/jkowalsk/myproject.git
 ```
 
 
-## JupyterLab
+## Working in JupyterLab (recommended)
 JupyterLab is one of two options for using the compute unit. All you need is a browser - everything else is in the cloud.
 
 ### Prerequisite
@@ -81,12 +88,12 @@ JupyterLab is one of two options for using the compute unit. All you need is a b
 * Open SSH sesssion using your credentials
 
 If you want to develop the code using JupyterLab, you need to register first the environment to make it visible on the website.
-#### Open JupyterLab and Launch Server
+### Open JupyterLab and Launch Server
 Enter the http://156.17.128.168/jupyterhub URL address and provide your credentions.
 
 ![](img/JupyterLab_log_screen.png)
 
-If the server is not running, click **"Launch Server"**.
+If the server is not running, click `Launch Server`.
 
 ![](img/JupyterLab_run_server_screen.png)
 
@@ -94,15 +101,15 @@ The Launcher section will be so far empty.
 
 ![](img/JupyterLab_empty_screen.png)
 
-#### Register the environemnt in JupyterLab
-Instead of "myenv" and "Python 3 (myenv)" please enter your project key and project name.
+### Register the environemnt in JupyterLab
+Instead of `myenv` and `Python 3 (myenv)` please enter your project key and project name.
 ```bash
 conda activate myenv
 pip install ipykernel
 python -m ipykernel install --user --name myenv --display-name "Python 3 (myenv)"
 ```
 
-#### Refresh JupyterLab website
+### Refresh JupyterLab website
 After refreshing the JupyterLab dashboard (F5) the newly added environemnt should be visible.
 
 ![](img/JupyterLab_ready_screen.png)
@@ -111,11 +118,15 @@ After refreshing the JupyterLab dashboard (F5) the newly added environemnt shoul
 1. In the left menu the newly cloned project direstory should be visible.
 2. **Create new Notebook (.ipynb) file (or open an existing one) and use JupyterLab editor to conduct your research.**
 
-## PyCharm Professional
+## Working in PyCharm Professional
 This setup allows you to create code locally in PyCharm, while all executable processes are on the server (remote environment).
 
+### Prerequisite
+* Conda environemnt has been created
+* PyCharm Professional is installed locally.
+
 ### Checkout your Git repository on your local machine 
-Go to your favorite location on local machine and clone the project repository (the same one you already cloned on the remote machine ealier). Instead of "jkowalsk" and "myproject" please enter your data.
+Go to your favorite location on local machine and clone the project repository (the same one you already cloned on the remote machine ealier). Instead of `jkowalsk` and `myproject` please enter your data.
 ```bash
 git clone https://github.com/jkowalsk/myproject.git
 ```
@@ -163,3 +174,25 @@ In case you need to manually synchronize data between locations, you can force i
 Now, when running or debugging please make sure you chose the proper remote environment to run scripts on.
 
 ![](img/JupyterLab_env6_screen.png)
+
+# Customization
+## Installing additional Python libraries
+As a person working on a research project, you need to use selected libraries. 
+Regardless of the method of python library installation, this should be done on the Miniconda environment created earlier. There are generally three methods for installing libraries:
+### Via terminal
+Log in to the server, activate your environment and install the library in the environment using the `conda` or `pip` command. Please, be sure your proper environment has been activated.
+```bash
+conda activate myenv
+pip install <library_name>
+```
+### Via JupyterLab
+Any command that works at the command-line can be used in IPython (JupyterLab) by prefixing it with the `!` character. For example, the `ls`, `pwd`, and `echo`. What you need is only open a notebook in JupyterLab, choose the proper environemnt in a combo-box and enter:
+```bash
+!pip install <library_name>
+```
+### Via PyCharm
+Before you install some new libraries you have to refresh/synchronize the project. 
+
+![](img/JupyterLab_env7_screen.png)
+
+Then open the interpreter settings `File --> Settings --> Project Interpreter` and install selected library.
