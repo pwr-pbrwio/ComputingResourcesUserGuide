@@ -1,4 +1,10 @@
- User Guide
+User Guide
+# About server
+* Operating system: Debian 9
+* RAM 128 GB
+* Intel Core i9-9960X 
+* GPU NVIDIA GeForce RTX 2080 Ti
+
 # Account Creation
 To use the Discovery server you must have an active account. To do this, you have to send an e-mail to lech.madeyski@pwr.edu.pl and provide the following information:
 1. Justification for what reason the computing power is needed
@@ -74,7 +80,7 @@ git clone https://github.com/jkowalsk/myproject.git
 ```
 
 
-## JupyterLab
+## Working in JupyterLab (recommended)
 JupyterLab is one of two options for using the compute unit. All you need is a browser - everything else is in the cloud.
 
 ### Prerequisite
@@ -112,7 +118,7 @@ After refreshing the JupyterLab dashboard (F5) the newly added environemnt shoul
 1. In the left menu the newly cloned project direstory should be visible.
 2. **Create new Notebook (.ipynb) file (or open an existing one) and use JupyterLab editor to conduct your research.**
 
-## PyCharm Professional
+## Working in PyCharm Professional
 This setup allows you to create code locally in PyCharm, while all executable processes are on the server (remote environment).
 
 ### Prerequisite
@@ -168,3 +174,25 @@ In case you need to manually synchronize data between locations, you can force i
 Now, when running or debugging please make sure you chose the proper remote environment to run scripts on.
 
 ![](img/JupyterLab_env6_screen.png)
+
+# Customization
+## Installing additional Python libraries
+As a person working on a research project, you need to use selected libraries. 
+Regardless of the method of python library installation, this should be done on the Miniconda environment created earlier. There are generally three methods for installing libraries:
+### Via terminal
+Log in to the server, activate your environment and install the library in the environment using the `conda` or `pip` command. Please, be sure your proper environment has been activated.
+```bash
+conda activate myenv
+pip install <library_name>
+```
+### Via JupyterLab
+Any command that works at the command-line can be used in IPython (JupyterLab) by prefixing it with the `!` character. For example, the `ls`, `pwd`, and `echo`. What you need is only open a notebook in JupyterLab, choose the proper environemnt in a combo-box and enter:
+```bash
+!pip install <library_name>
+```
+### Via PyCharm
+Before you install some new libraries you have to refresh/synchronize the project. 
+
+![](img/JupyterLab_env7_screen.png)
+
+Then open the interpreter settings `File --> Settings --> Project Interpreter` and install selected library.
