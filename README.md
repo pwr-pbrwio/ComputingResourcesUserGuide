@@ -1,4 +1,4 @@
-User Guide
+# User Guide
 # About server
 * Operating system: Debian 9
 * RAM 128 GB
@@ -13,7 +13,7 @@ To use the Discovery server you must have an active account. To do this, you hav
 4. Project duration
 5. Nature and size of data
 
-If your request is approved, you will be able to enjoy high-performance computing unit. Finally as an e-mail response you will be provided with credentials to your pr account. From this moment you are fully responsible for your account and the data you store there.
+If your request is approved, you will be able to enjoy high-performance computing unit. Finally as an e-mail response you will be provided with credentials to your pr account. **The user's default password is the intex number.** From this moment you are fully responsible for your account and the data you store there.
 
 # Getting Started
 ## Interfaces
