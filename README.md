@@ -6,7 +6,7 @@
 * GPU NVIDIA GeForce RTX 2080 Ti
 
 # Account Creation
-To use the Discovery server you must have an active account. To do this, you have to send an e-mail to lech.madeyski@pwr.edu.pl and provide the following information:
+To use the Discovery server you must have an active account. To do this, you have to send an e-mail to lech <dot> madeyski <at> pwr <dot> edu <dot> pl and provide the following information:
 1. Justification for what reason the computing power is needed
 2. Project title
 3. Short project description
