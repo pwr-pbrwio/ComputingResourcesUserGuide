@@ -5,8 +5,13 @@
 * Intel Core i9-9960X 
 * GPU NVIDIA GeForce RTX 2080 Ti
 
+# Open ports
+For security reason only two ports have been open and are under a full monitoring:
+* 443 (https and reverse proxy)
+* 9022 (ssh v2)
+
 # Account Creation
-To use the Discovery server you must have an active account. To do this, you have to send an e-mail to lech /dot/ madeyski /at/ pwr /dot/ edu /dot/ pl and provide the following information:
+To use the "Challenger" server you must have an active account. To do this, you have to send an e-mail to lech /dot/ madeyski /at/ pwr /dot/ edu /dot/ pl and provide the following information:
 1. Justification for what reason the computing power is needed
 2. Project title
 3. Short project description
@@ -17,23 +22,23 @@ If your request is approved, you will be able to enjoy high-performance computin
 
 # Getting Started
 ## Interfaces
-Using the Discovery server is possible using two interfaces: 
+Using the "Challenger" server is possible using two interfaces: 
 * Website (recommended)
 * Termial
 
 ### Website (recommended)
-* *JupyterLab* (http://156.17.128.168/jupyterhub) - is a web-based interactive development environment for Jupyter notebooks, code, and data. All development work can be done via the browser. You can work from multiple devices without installing any external software. Before starting the project, a setup via a terminal is required.
+* *JupyterLab* (https://challenger.edu.pl/jupyterhub) - is a web-based interactive development environment for Jupyter notebooks, code, and data. All development work can be done via the browser. You can work from multiple devices without installing any external software. Before starting the project, a setup via a terminal is required.
 
 ### Termial
-* *SSH* (username@156.17.128.168:22) - network protocol for operating network services. You can connect to any account via SSH protocol and perform commands from the command line. You can also connect PyCharm Professional software via SSH by setting up a remote environment that allows you to prepare and maintain the code locally in the IDE but run it remotely.
+* *SSH* (username@challenger.edu.pl:9022) - network protocol for operating network services. You can connect to any account via SSH protocol and perform commands from the command line. You can also connect PyCharm Professional software via SSH by setting up a remote environment that allows you to prepare and maintain the code locally in the IDE but run it remotely.
 
 ## Project setup
 Regardless of the channel you choose, you must setup a project. This step must be done via the console. 
 ### Log in to the server
-Using your individual credentials log in to the server using SSH protocol on port 22. For Linux and macOS users the default consoles can be used while Windows users should install first MobaXterm or Putty SSH clients.
+Using your individual credentials log in to the server using SSH protocol on port 9022. For Linux and macOS users the default consoles can be used while Windows users should install first MobaXterm or Putty SSH clients.
 #### Linux and macOS users (eg. termianl)
 ```bash
-ssh jkowalsk@156.17.128.168
+ssh jkowalsk@challenger.edu.pl
 ```
 #### Windows users (eg. MobaXterm)
 
@@ -51,7 +56,7 @@ Before you do this, you must reload the system variables to enable Miniconda.
 ```bash
 source ~/.bashrc
 ```
-When you reload a context you'll see that you are currently using the default (base) python environment, eg. `(base) jkowalsk@discovery:~`
+When you reload a context you'll see that you are currently using the default (base) python environment, eg. `(base) jkowalsk@challenger:~`
 
 ### Create Conda environment
 When creating a new environment, you can specify the project name and Python version. Instead of `myenv` please enter your project name. Only the necessary dependencies will be installed. All additional libraries, e.g. numpy, tendorflow must be manually installed in next steps.
@@ -89,7 +94,7 @@ JupyterLab is one of two options for using the compute unit. All you need is a b
 
 If you want to develop the code using JupyterLab, you need to register first the environment to make it visible on the website.
 ### Open JupyterLab and Launch Server
-Enter the http://156.17.128.168/jupyterhub URL address and provide your credentions.
+Enter the https://challenger.edu.pl/jupyterhub URL address and provide your credentions.
 
 ![](img/JupyterLab_log_screen.png)
 
@@ -101,7 +106,7 @@ The Launcher section will be so far empty.
 
 ![](img/JupyterLab_empty_screen.png)
 
-### Register the environemnt in JupyterLab
+### Create and register Python environemnt
 Instead of `myenv` and `Python 3 (myenv)` please enter your project key and project name.
 ```bash
 conda activate myenv
@@ -109,10 +114,21 @@ pip install ipykernel
 python -m ipykernel install --user --name myenv --display-name "Python 3 (myenv)"
 ```
 
+### Create and register R environemnt (optional)
+Instead of `myenv`,`ir` and `R (myenv)` please enter your project key and project name.
+```bash
+conda activate myenv
+conda install -c r r-essentials
+R #open R interpreter
+```
+```R
+IRkernel::installspec(name = 'ir', displayname = 'R (myenv))')
+```
+
 ### Refresh JupyterLab website
 After refreshing the JupyterLab dashboard (F5) the newly added environemnt should be visible.
 
-![](img/JupyterLab_ready_screen.png)
+![](img/JupyterLab_env8_screen.png)
 
 ### Enjoy woring in JupyterLab
 1. In the left menu the newly cloned project direstory should be visible.
@@ -146,7 +162,7 @@ Enter your password.
 ![](img/JupyterLab_env2_screen.png)
 
 Now it need to set the correct path to Python interpreters dedicated for the given remote environment.
-Open a terminal, log in to the *Discovery* server and check the correct path. Please, be sure your proper environment has been activated.
+Open a terminal, log in to the *Challenger* server and check the correct path. Please, be sure your proper environment has been activated.
 ```bash
 conda activate myenv
 which python
@@ -180,16 +196,24 @@ Now, when running or debugging please make sure you chose the proper remote envi
 As a person working on a research project, you need to use selected libraries. 
 Regardless of the method of python library installation, this should be done on the Miniconda environment created earlier. There are generally three methods for installing libraries:
 ### Via terminal
-Log in to the server, activate your environment and install the library in the environment using the `conda` or `pip` command. Please, be sure your proper environment has been activated.
+#### Embedded terminal (recommended)
+Open the dashboard `https://challenger.edu.pl/jupyterhub/` and click `Terminal`. Now you can use the full capabilities of the terminal in your browser.
 ```bash
 conda activate myenv
 pip install <library_name>
 ```
-### Via JupyterLab
-Any command that works at the command-line can be used in IPython (JupyterLab) by prefixing it with the `!` character. For example, the `ls`, `pwd`, and `echo`. What you need is only open a notebook in JupyterLab, choose the proper environemnt in a combo-box and enter:
+#### External temrinal eg. MobaXterm, Putty, iTerm2
+Log in to the server, activate your environment and install the library in the environment using the `conda`, `pip` or `R` command. Please, be sure your proper environment has been activated.
 ```bash
-!pip install <library_name>
+conda activate myenv
+pip install <library_name>
 ```
+or
+```R
+conda activate myenv
+R #run R interpreter
+```
+
 ### Via PyCharm
 Before you install some new libraries you have to refresh/synchronize the project. 
 
