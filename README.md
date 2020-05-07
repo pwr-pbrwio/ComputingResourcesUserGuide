@@ -30,7 +30,7 @@ Using the "Challenger" server is possible using two interfaces:
 * *JupyterLab* (https://challenger.edu.pl/jupyterhub) - is a web-based interactive development environment for Jupyter notebooks, code, and data. All development work can be done via the browser. You can work from multiple devices without installing any external software. Before starting the project, a setup via a terminal is required.
 
 ### Termial
-* *SSH* (username@challenger.edu.pl:9022) - network protocol for operating network services. You can connect to any account via SSH protocol and perform commands from the command line. You can also connect PyCharm Professional software via SSH by setting up a remote environment that allows you to prepare and maintain the code locally in the IDE but run it remotely.
+* *SSH* (username@challenger.edu.pl -p 9022) - network protocol for operating network services. You can connect to any account via SSH protocol and perform commands from the command line. You can also connect PyCharm Professional software via SSH by setting up a remote environment that allows you to prepare and maintain the code locally in the IDE but run it remotely.
 
 ## Project setup
 Regardless of the channel you choose, you must setup a project. This step must be done via the console. 
